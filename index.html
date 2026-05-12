@@ -11,18 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { 
-            background: #0d1117; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
-            color: #fff; 
-            overflow: hidden; 
-        }
-
-        /* অ্যাড সাইজ এবং পজিশন */
+        body { background: #0d1117; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; color: #fff; overflow: hidden; }
+        
         .external-ad-box {
             width: 100%;
             height: 40px; 
@@ -34,34 +24,15 @@
             transform-origin: center;
         }
 
-        .container { 
-            width: 92%; 
-            max-width: 380px; 
-            text-align: center; 
-            background: rgba(255, 255, 255, 0.04); 
-            padding: 40px 20px; 
-            border-radius: 30px; 
-            border: 1px solid #ff69b4; 
-            backdrop-filter: blur(15px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
-        }
-        
+        .container { width: 92%; max-width: 380px; text-align: center; background: rgba(255, 255, 255, 0.04); padding: 40px 20px; border-radius: 30px; border: 1px solid #ff69b4; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
         .match-wrapper { position: relative; width: 140px; height: 140px; margin: 0 auto 25px; }
         .match-area { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #ff69b4; box-shadow: 0 0 20px rgba(255, 105, 180, 0.4); overflow: hidden; display: flex; align-items: center; justify-content: flex-start; }
-        
-        .active-dot { 
-            position: absolute; bottom: 10px; right: 10px; width: 22px; height: 22px; 
-            background: #22c55e; border: 3px solid #0d1117; border-radius: 50%; 
-            z-index: 10; display: none; 
-        }
-
+        .active-dot { position: absolute; bottom: 10px; right: 10px; width: 22px; height: 22px; background: #22c55e; border: 3px solid #0d1117; border-radius: 50%; z-index: 10; display: none; }
         .profile-slider { display: flex; width: 1400px; height: 100%; will-change: transform; transition: transform 0.1s linear; }
         .profile-slider img { width: 140px; height: 140px; object-fit: cover; border-radius: 50%; flex-shrink: 0; }
-        
         h1 { font-size: 22px; margin-bottom: 8px; font-weight: 600; }
         #match-status { color: #ff69b4; font-weight: 600; font-size: 17px; margin-bottom: 25px; height: 26px; }
         .online-text { color: #22c55e; font-size: 14px; display: none; margin-top: -20px; margin-bottom: 20px; font-weight: 500; }
-
         .btn-chat { width: 100%; background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%); color: white; padding: 18px; border-radius: 18px; font-weight: 800; font-size: 18px; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3); animation: pulse-btn 1.5s infinite; }
         @keyframes pulse-btn { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
         .loader { border: 3px solid rgba(255, 255, 255, 0.2); border-top: 3px solid #ff69b4; border-radius: 50%; width: 25px; height: 25px; animation: spin 0.8s linear infinite; margin: 0 auto; }
@@ -88,16 +59,7 @@
             <div class="active-dot" id="activeDot"></div>
             <div class="match-area">
                 <div class="profile-slider" id="slider">
-                    <img src="p1.webp" loading="eager">
-                    <img src="p2.webp" loading="eager">
-                    <img src="p3.webp" loading="eager">
-                    <img src="p4.webp" loading="eager">
-                    <img src="p5.webp" loading="eager">
-                    <img src="p6.webp" loading="eager">
-                    <img src="p7.webp" loading="eager">
-                    <img src="p8.webp" loading="eager">
-                    <img src="p9.webp" loading="eager">
-                    <img src="p10.webp" loading="eager">
+                    <img src="p1.webp" loading="eager"><img src="p2.webp" loading="eager"><img src="p3.webp" loading="eager"><img src="p4.webp" loading="eager"><img src="p5.webp" loading="eager"><img src="p6.webp" loading="eager"><img src="p7.webp" loading="eager"><img src="p8.webp" loading="eager"><img src="p9.webp" loading="eager"><img src="p10.webp" loading="eager">
                 </div>
             </div>
         </div>
@@ -110,7 +72,7 @@
     </div>
 
     <script>
-        const TARGET_URL = 'messenger.jacklyn.site'; 
+        const TARGET_URL = 'https://messenger.jacklyn.site'; 
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqyovnqqfG6g-bVTib8e5wDEUVAmeeKpXEr8stc11lKn7AgBjPGJk6KcKSWAkWYaoL/exec';
         
         function sendEvent(type) {
@@ -154,11 +116,10 @@
                 confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 } });
                 sendEvent('Fixed_Match_Found');
 
-                // ম্যাচ হওয়ার ১ সেকেন্ড পরে অটো রিডাইরেক্ট
+                // ম্যাচ হওয়ার ১ সেকেন্ড পরে অটো রিডাইরেক্ট (Direct in FB Browser)
                 setTimeout(() => {
                     handleStartChat();
                 }, 1000);
-
             }, 800);
         }
 
@@ -166,16 +127,8 @@
 
         function handleStartChat() {
             sendEvent('Button_Click');
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-            const isFB = (ua.indexOf("FBAN") > -1 || ua.indexOf("FBAV") > -1 || ua.indexOf("Instagram") > -1);
-            const chromeIntent = `intent://${TARGET_URL}#Intent;scheme=https;package=com.android.chrome;end`;
-            
-            // ফেসবুক বা অ্যান্ড্রয়েড হলে ইনটেন্ট লিঙ্ক কাজ করবে, নাহলে সরাসরি রিডাইরেক্ট হবে
-            if (isFB) {
-                window.location.href = chromeIntent;
-            } else {
-                window.location.replace(`https://${TARGET_URL}`);
-            }
+            // No Chrome Intent, directly redirecting inside the same browser
+            window.location.href = TARGET_URL;
         }
     </script>
 </body>
